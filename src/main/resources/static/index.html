@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Hellopama!</h1>
+<div id="content">
+
+</div>
+<input type="date" name="startDate" id="startDate" value="">
+<input type="date" name="endDate" id="endDate" value="">
+<input type="string" name="type" id="type" value="">
+<button onclick="getRows(document.getElementById('startDate').value,document.getElementById('endDate').value,document.getElementById('type').value)">Submit</button>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="/datamaps.world.min.js"></script>
+<div id="container" style="position: relative; width: 500px; height: 300px;"></div>
+<script>
+    var climateMap = new Object();
+    function getRows(startDate, endDate, type) {
+        startDate = startDate !== "" ? startDate + " 00:00:00" : "";
+        endDate = endDate !== "" ? endDate + " 00:00:00": "";
+        $.ajax({
+            type: 'GET',
+            url: "http://localhost:8080/api/disaster",
+            data: {"startDate": startDate, "endDate": endDate, "type": type },
+            success: function (resp) {
+                console.log(resp);
+                var map = new Datamap({
+                    scope: 'usa',
+                    element: document.getElementById('container'),
+                    geographyConfig: {
+                        highlightBorderColor: '#bada55',
+                        popupTemplate: function(geography, data) {
+                            return '<div class="hoverinfo">' + geography.properties.name + '</br>' +
+                                'Count:' +  data.count + ''
+                        },
+                        highlightBorderWidth: 3
+                    },
+                    fills: {
+                        'VERY_HIGH': '#306580',
+                        'HIGH':'#306596',
+                        'MEDIUM': '#667FAF',
+                        'LOW': '#A9C0DD',
+                        'VERY_LOW': '#A9C0D0',
+                        defaultFill: '#A9C0B0'
+                    },
+                    data: resp
+                });
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
