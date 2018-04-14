@@ -61,7 +61,7 @@ public class ClimateService {
     }
 
     private DisasterIntensity getIntensity(int min, int max, int count) {
-        float split = (min + max) / 5;
+        double split = (double) (min + max) / 5.0;
         if(count <= split) {
             return DisasterIntensity.VERY_LOW;
         } else if (count <= split * 2) {

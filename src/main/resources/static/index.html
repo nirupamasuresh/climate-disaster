@@ -1,63 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Style the body */
+        body {
+            font-family: Calibri;
+            margin: 0;
+        }
+
+        /* Header/logo Title */
+        .header {
+            padding: 1px;
+            text-align: center;
+            background: #373F47;
+            color: #D1D2F9;
+            border-bottom: 5px none white;
+        }
+        
+        /* Increase the font size of the heading */
+        .header h1 {
+            font-size: 40px;
+        }
+
+
+        /* Column container */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #373F47;
+            color: #D1D2F9;
+        }
+
+        /* Create two unequal columns that sits next to each other */
+        /* Sidebar/left column */
+        .side {
+            -ms-flex: 30%; /* IE10 */
+            flex: 30%;
+            padding: 10px;
+        }
+
+        /* Main column */
+        .main {
+            -ms-flex: 70%; /* IE10 */
+            flex: 70%;
+            padding: 10px;
+        }
+
+        /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 700px) {
+            .row {
+                flex-direction: column;
+            }
+        }
+
+        /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+        @media screen and (max-width: 400px) {
+            .navbar a {
+                float: none;
+                width: 100%;
+            }
+        }
+        .label {
+            color: white;
+            padding: 8px;
+            display: inline-block;
+        }
+
+        .VERY_HIGH {background-color: #1B4F72;}
+        .HIGH {background-color: #2874A6;}
+        .MEDIUM {background-color: #3498DB;}
+        .LOW {background-color: #85C1E9;}
+        .VERY_LOW {background-color: #D6EAF8;}
+        .default {background-color: #F8F9F9; color: black;}
+    </style>
 </head>
 <body>
-<h1>Disaster Summary</h1>
-<div id="content">
-
+<div class="header">
+    <h1>US Climate Disasters</h1>
 </div>
-<input type="date" name="startDate" id="startDate" value="">
-<input type="date" name="endDate" id="endDate" value="">
-<input type="string" name="type" id="type" value="">
-<button onclick="getRows(document.getElementById('startDate').value,document.getElementById('endDate').value,document.getElementById('type').value)">Submit</button>
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-<script src="/datamaps.world.min.js"></script>
-<div id="container" style="position: relative; width: 500px; height: 300px;"></div>
-<script>
-    var climateMap = new Object();
-    function getRows(startDate, endDate, type) {
-        startDate = startDate !== "" ? startDate + " 00:00:00" : "";
-        endDate = endDate !== "" ? endDate + " 00:00:00": "";
-        $.ajax({
-            type: 'GET',
-            url: "http://localhost:8080/api/disaster",
-            data: {"startDate": startDate, "endDate": endDate, "type": type },
-            success: function (resp) {
-                console.log(resp);
-                var map = new Datamap({
-                    scope: 'usa',
-                    element: document.getElementById('container'),
-                    geographyConfig: {
-                        highlightBorderColor: '#bada55',
-                        popupTemplate: function(geography, data) {
-                            return '<div class="hoverinfo">' + geography.properties.name + '</br>' +
-                                'Count:' +  data.count + ''
-                        },
-                        highlightBorderWidth: 3
-                    },
-                    fills: {
-                        'VERY_HIGH': '#306580',
-                        'HIGH':'#306596',
-                        'MEDIUM': '#667FAF',
-                        'LOW': '#A9C0DD',
-                        'VERY_LOW': '#A9C0D0',
-                        defaultFill: '#A9C0B0'
-                    },
-                    data: resp
-                });
-            }
-        });
-    }
 
+<script>
+    function clearDiv() {
+        document.getElementById("container").innerHTML = "";
+    }
 </script>
 
+<div class="row">
+    <div class="side">
+        <h3>Start Date</h3>
+        <input type="date" name="startDate" id="startDate" value="">
+        <h3>End Date</h3>
+        <input type="date" name="endDate" id="endDate" value="">
+        <h3>Disaster Type</h3>
+        <select>
+            <option value="DR">DR</option>
+            <option value="FS">FS</option>
+            <option value="FM">FM</option>
+            <option value="EM">EM</option>
+        </select>
+        <h3></h3>
+        <button onclick="getRows(document.getElementById('startDate').value,document.getElementById('endDate').value,document.getElementById('type').value); clearDiv()">Submit</button>
+        <h3></h3>
+        <span class="label VERY_HIGH">Very High</span>
+        <br/>
+        <span class="label HIGH">High</span>
+        <br/>
+        <span class="label MEDIUM">Medium</span>
+        <br/>
+        <span class="label LOW">Low</span>
+        <br/>
+        <span class="label VERY_LOW">Very Low</span>
+        <br/>
+        <span class="label default">Not Included</span>
+    </div>
+
+<div class="main">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="/datamaps.world.min.js"></script>
+    <div id="container" style="position: relative; width: 900px; height: 800px"></div>
+    <script>
+        var map = new Datamap({
+            element: document.getElementById('container'),
+            scope: 'usa',
+            setProjection: function(element) {
+                projection = d3.geo.albersUsa()
+                    .scale(900)
+                    .translate([450, 300]);
+                var path = d3.geo.path()
+                    .projection(projection);
+
+                return {path: path, projection: projection};
+            },
+        });
+        function getRows(startDate, endDate, type) {
+            startDate = startDate !== "" ? startDate + " 00:00:00" : "";
+            endDate = endDate !== "" ? endDate + " 00:00:00": "";
+            $.ajax({
+                type: 'GET',
+                url: "http://localhost:8080/api/disaster",
+                data: {"startDate": startDate, "endDate": endDate, "type": type },
+                success: function (resp) {
+                    console.log(resp);
+                    var map = new Datamap({
+                        scope: 'usa',
+                        element: document.getElementById('container'),
+                        setProjection: function(element) {
+                            projection = d3.geo.albersUsa()
+                                .scale(900)
+                                .translate([450, 300]);
+                            var path = d3.geo.path()
+                                .projection(projection);
+
+                            return {path: path, projection: projection};
+                        },
+                        geographyConfig: {
+                            highlightBorderColor: '#bada55',
+                            popupTemplate: function(geography, data) {
+                                return '<div class="hoverinfo">' + geography.properties.name + '</br>' +
+                                    'Count:' +  data.count + ''
+                            },
+                            highlightBorderWidth: 3
+                        },
+                        fills: {
+                            'VERY_HIGH': '#1B4F72',
+                            'HIGH':'#2874A6',
+                            'MEDIUM': '#3498DB',
+                            'LOW': '#85C1E9',
+                            'VERY_LOW': '#D6EAF8',
+                            defaultFill: '#F8F9F9'
+                        },
+                        data: resp
+                    });
+                }
+            });
+        }
+    </script>
+</div>
+
+</div>
 </body>
+
 </html>
