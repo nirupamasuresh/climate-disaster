@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/*.jar
+web: java $JAVA_OPTS -cp target/climate-disasters-0.0.1-SNAPSHOT.jar
