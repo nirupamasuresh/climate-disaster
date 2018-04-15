@@ -14,8 +14,8 @@ var map = new Datamap({
     },
     setProjection: function(element) {
         projection = d3.geo.albersUsa()
-            .scale(900)
-            .translate([450, 300]);
+            .scale(element.offsetWidth + 100)
+            .translate([element.offsetWidth/2,element.offsetHeight/3]);
         var path = d3.geo.path()
             .projection(projection);
 
@@ -51,8 +51,8 @@ function getRows(startDate, endDate, type) {
                 element: document.getElementById('container'),
                 setProjection: function(element) {
                     projection = d3.geo.albersUsa()
-                        .scale(900)
-                        .translate([450, 300]);
+                        .scale(element.offsetWidth + 100)
+                        .translate([element.offsetWidth/2, element.offsetHeight/3]);
                     var path = d3.geo.path()
                         .projection(projection);
 
@@ -81,7 +81,7 @@ function getRows(startDate, endDate, type) {
             });
         },
         error: function() {
-            alert('Please enter a valid date in the form dd-MM-yyyy');
+            alert('Please enter a valid date in the form dd-mm-yyyy');
         }
     });
 }
