@@ -1,1 +1,1 @@
-web: java -jar target/climate-disasters-0.0.1-SNAPSHOT.jar
+web: java $JAVA_OPTS -cp target/classes:target/*.jar com.checkr.climate.application.ClimateApplication
