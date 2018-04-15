@@ -46,7 +46,6 @@ function getRows(startDate, endDate, type) {
             "type": type
         },
         success: function(resp) {
-            console.log(resp);
             var map = new Datamap({
                 scope: 'usa',
                 element: document.getElementById('container'),
@@ -80,6 +79,6 @@ function getRows(startDate, endDate, type) {
                 },
                 data: resp
             });
-        }
+        },
     });
 }

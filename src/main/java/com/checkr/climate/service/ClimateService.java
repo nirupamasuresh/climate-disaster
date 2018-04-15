@@ -51,6 +51,9 @@ public class ClimateService {
         for (StateCount stateCount:disasters) {
             stateCounts.put(stateCount.getState(), stateCount.getCount().intValue());
         }
+        if(stateCounts.isEmpty()) {
+            return new HashMap<>();
+        }
         int max = Collections.max(stateCounts.values());
         int min = Collections.min(stateCounts.values());
         Map<String,IntensitySub> intensitySubMap = new HashMap<>();
