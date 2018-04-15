@@ -2,6 +2,15 @@ function clearDiv() {
     document.getElementById("container").innerHTML = "";
 }
 
+function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return JSON.stringify(obj) === JSON.stringify({});
+}
+
 var map = new Datamap({
     element: document.getElementById('container'),
     scope: 'usa',
@@ -46,6 +55,9 @@ function getRows(startDate, endDate, type) {
             "type": type
         },
         success: function(resp) {
+            if (isEmpty(resp)) {
+                alert('No results found')
+            }
             var map = new Datamap({
                 scope: 'usa',
                 element: document.getElementById('container'),
