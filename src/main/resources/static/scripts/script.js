@@ -80,5 +80,8 @@ function getRows(startDate, endDate, type) {
                 data: resp
             });
         },
+        error: function() {
+            alert('Please enter a valid date in the form dd-MM-yyyy');
+        }
     });
 }
