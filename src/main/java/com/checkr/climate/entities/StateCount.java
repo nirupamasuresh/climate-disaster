@@ -1,5 +1,8 @@
 package com.checkr.climate.entities;
 
+/**
+ * POJO for query output of group by state and its count
+ */
 public class StateCount {
     private String state;
     private Long count;

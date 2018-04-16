@@ -1,10 +1,13 @@
 package com.checkr.climate.entities;
 
-public class IntensitySub {
+/**
+ * DTO for output from SQL query to convert it to the format required to show the final visualization
+ */
+public class DisasterSummaryDTO {
     private DisasterIntensity fillKey;
     private int count;
 
-    public IntensitySub(DisasterIntensity fillkey, int count) {
+    public DisasterSummaryDTO(DisasterIntensity fillkey, int count) {
         this.fillKey = fillkey;
         this.count = count;
     }
@@ -27,7 +30,7 @@ public class IntensitySub {
 
     @Override
     public String toString() {
-        return "IntensitySub{" +
+        return "DisasterSummaryDTO{" +
                 "fillkey=" + fillKey +
                 ", count=" + count +
                 '}';

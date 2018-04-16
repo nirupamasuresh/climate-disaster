@@ -2,6 +2,9 @@ package com.checkr.climate.entities;
 
 import java.util.Date;
 
+/**
+ * POJO for showing error details in a specific format
+ */
 public class ErrorDetails {
     private Date timestamp;
     private String message;

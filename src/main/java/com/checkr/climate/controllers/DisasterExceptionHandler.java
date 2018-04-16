@@ -11,10 +11,21 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Date;
 
+/**
+ * Exception handling for unparseable date
+ */
 @ControllerAdvice
-public class ClimateExceptionHandler extends ResponseEntityExceptionHandler {
+public class DisasterExceptionHandler extends ResponseEntityExceptionHandler {
+
+    /**
+     * Exception to handle date parsing
+     *
+     * @param ex      exception
+     * @param request request
+     * @return Response Entity with error details and status code 400
+     */
     @ExceptionHandler(UnparseableDateException.class)
-    public ResponseEntity<ErrorDetails> handleUserNotFoundException(UnparseableDateException ex, WebRequest request) {
+    public ResponseEntity<ErrorDetails> dateParsingException(UnparseableDateException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }

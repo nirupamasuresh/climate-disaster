@@ -6,11 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
+/**
+ * Entity for each disaster summary
+ */
 @Entity
 public class Disaster {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private int disasterNumber;
@@ -32,7 +35,8 @@ public class Disaster {
     private String hash;
     private Date lastRefresh;
 
-    protected Disaster() {}
+    protected Disaster() {
+    }
 
     public Disaster(int disasterNumber, int ihProgramDeclared, int iaProgramDeclared, int paProgramDeclared, int hmProgramDeclared, String state, Date declarationDate, String fyDeclared, String disasterType, String incidentType, String title, Date incidentBeginDate, Date incidentEndDate, Date disasterCloseOutDate, String declaredCountyArea, String placeCode, String hash, Date lastRefresh) {
         this.disasterNumber = disasterNumber;
