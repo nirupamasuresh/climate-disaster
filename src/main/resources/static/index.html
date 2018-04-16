@@ -12,7 +12,10 @@
 <body>
     <div class="header">
         <h1>US Climate Disasters</h1>
+        Visualize Climate Disasters in the US within a selected date range and filter by disaster type<br>
+        (Hover over the map for details)
     </div>
+
 
     <div class="row">
         <div class="side">
@@ -22,11 +25,11 @@
             <input type="date" name="endDate" id="endDate" value="">
             <h3>Disaster Type</h3>
             <select id="type">
-                <option value=""></option>
-                <option value="DR">DR</option>
-                <option value="FS">FS</option>
-                <option value="FM">FM</option>
-                <option value="EM">EM</option>
+                <option value="">All</option>
+                <option value="DR">Major Disaster Declaration</option>
+                <option value="FS">Fire Suppression Authorization</option>
+                <option value="FM">Fire Management Assistance Declaration</option>
+                <option value="EM">Emergency Declaration</option>
             </select>
             <h3></h3>
             <button onclick=" getAndPopulateData()">Submit</button>
