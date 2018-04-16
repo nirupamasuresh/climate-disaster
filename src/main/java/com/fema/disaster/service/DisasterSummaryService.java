@@ -1,10 +1,10 @@
-package com.checkr.climate.service;
+package com.fema.disaster.service;
 
-import com.checkr.climate.entities.DisasterIntensity;
-import com.checkr.climate.entities.DisasterSummaryDTO;
-import com.checkr.climate.entities.StateCount;
-import com.checkr.climate.exceptions.UnparseableDateException;
-import com.checkr.climate.repositories.DisasterRepository;
+import com.fema.disaster.entities.DisasterIntensity;
+import com.fema.disaster.entities.DisasterSummaryDTO;
+import com.fema.disaster.entities.StateCount;
+import com.fema.disaster.exceptions.UnparseableDateException;
+import com.fema.disaster.repositories.DisasterRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Service layer for the disaster summaries
+ * Service layer for the fema summaries
  */
 @Service
 public class DisasterSummaryService {
@@ -32,10 +32,10 @@ public class DisasterSummaryService {
      *
      * @param start filter by start date
      * @param end   filter by end date
-     * @param type  filter by disaster type
-     * @return map of disaster summaries
+     * @param type  filter by fema type
+     * @return map of fema summaries
      */
-    public Map<String, DisasterSummaryDTO> getDisasters(String start, String end, String type) {
+    public Map<String, DisasterSummaryDTO> getDisasters(String start, String end, String type) throws UnparseableDateException {
         Date startDate, endDate;
         List<StateCount> disasters;
         try {

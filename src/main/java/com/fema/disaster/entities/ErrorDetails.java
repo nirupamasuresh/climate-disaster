@@ -1,4 +1,4 @@
-package com.checkr.climate.entities;
+package com.fema.disaster.entities;
 
 import java.util.Date;
 

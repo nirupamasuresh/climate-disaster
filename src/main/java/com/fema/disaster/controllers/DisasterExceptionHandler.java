@@ -1,7 +1,7 @@
-package com.checkr.climate.controllers;
+package com.fema.disaster.controllers;
 
-import com.checkr.climate.entities.ErrorDetails;
-import com.checkr.climate.exceptions.UnparseableDateException;
+import com.fema.disaster.entities.ErrorDetails;
+import com.fema.disaster.exceptions.UnparseableDateException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

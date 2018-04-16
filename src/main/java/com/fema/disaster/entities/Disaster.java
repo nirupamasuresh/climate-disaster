@@ -1,19 +1,16 @@
-package com.checkr.climate.entities;
+package com.fema.disaster.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Entity for each disaster summary
+ * Entity for each fema summary
  */
 @Entity
 public class Disaster {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private int disasterNumber;
@@ -22,20 +19,25 @@ public class Disaster {
     private int paProgramDeclared;
     private int hmProgramDeclared;
     private String state;
+    @Column(columnDefinition = "datetime")
     private Date declarationDate;
     private String fyDeclared;
     private String disasterType;
     private String incidentType;
     private String title;
+    @Column(columnDefinition = "datetime")
     private Date incidentBeginDate;
+    @Column(columnDefinition = "datetime")
     private Date incidentEndDate;
+    @Column(columnDefinition = "datetime")
     private Date disasterCloseOutDate;
     private String declaredCountyArea;
     private String placeCode;
     private String hash;
+    @Column(columnDefinition = "datetime")
     private Date lastRefresh;
 
-    protected Disaster() {
+    public Disaster() {
     }
 
     public Disaster(int disasterNumber, int ihProgramDeclared, int iaProgramDeclared, int paProgramDeclared, int hmProgramDeclared, String state, Date declarationDate, String fyDeclared, String disasterType, String incidentType, String title, Date incidentBeginDate, Date incidentEndDate, Date disasterCloseOutDate, String declaredCountyArea, String placeCode, String hash, Date lastRefresh) {

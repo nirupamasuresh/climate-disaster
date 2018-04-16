@@ -1,4 +1,4 @@
-package com.checkr.climate.entities;
+package com.fema.disaster.entities;
 
 /**
  * DTO for output from SQL query to convert it to the format required to show the final visualization

@@ -1,4 +1,4 @@
-package com.checkr.climate.exceptions;
+package com.fema.disaster.exceptions;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 

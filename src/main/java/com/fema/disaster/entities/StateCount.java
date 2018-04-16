@@ -1,4 +1,4 @@
-package com.checkr.climate.entities;
+package com.fema.disaster.entities;
 
 /**
  * POJO for query output of group by state and its count
