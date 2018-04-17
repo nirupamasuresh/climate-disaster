@@ -66,7 +66,7 @@ public class DisasterSummaryServiceTest {
         Map<String, DisasterSummaryDTO> found = disasterSummaryService.getDisasters("1953-01-01 00:00:00", "1954-01-01 00:00:00", "DR");
         assertTrue(found.containsKey("GA"));
         assertEquals(found.get("GA").getCount(), 1L);
-        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.MEDIUM);
+        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.VERY_HIGH);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class DisasterSummaryServiceTest {
         Map<String, DisasterSummaryDTO> found = disasterSummaryService.getDisasters("", "1954-01-01 00:00:00", "DR");
         assertTrue(found.containsKey("GA"));
         assertEquals(found.get("GA").getCount(), 1L);
-        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.MEDIUM);
+        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.VERY_HIGH);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DisasterSummaryServiceTest {
         Map<String, DisasterSummaryDTO> found = disasterSummaryService.getDisasters("1953-01-01 00:00:00", "", "DR");
         assertTrue(found.containsKey("GA"));
         assertEquals(found.get("GA").getCount(), 1L);
-        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.MEDIUM);
+        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.VERY_HIGH);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class DisasterSummaryServiceTest {
         Map<String, DisasterSummaryDTO> found = disasterSummaryService.getDisasters("1953-01-01 00:00:00", "1954-01-01 00:00:00", "");
         assertTrue(found.containsKey("GA"));
         assertEquals(found.get("GA").getCount(), 1L);
-        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.MEDIUM);
+        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.VERY_HIGH);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class DisasterSummaryServiceTest {
         Map<String, DisasterSummaryDTO> found = disasterSummaryService.getDisasters("", "", "");
         assertTrue(found.containsKey("GA"));
         assertEquals(found.get("GA").getCount(), 1L);
-        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.MEDIUM);
+        assertEquals(found.get("GA").getFillKey(), DisasterIntensity.VERY_HIGH);
     }
 
     @Test(expected = UnparseableDateException.class)

@@ -90,7 +90,7 @@ public class DisasterSummaryService {
      * @return intensity of disasters per state
      */
     private DisasterIntensity getIntensity(int min, int max, int count) {
-        double split = (double) (min + max) / 5.0;
+        double split = (double) (max-min) / 5.0;
         if (count <= split) {
             return DisasterIntensity.VERY_LOW;
         } else if (count <= split * 2) {
